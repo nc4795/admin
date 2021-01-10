@@ -106,8 +106,111 @@
     </nav>
     </div>
     <!--footer end-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script>
-      script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    </script>
+      <script>
+  var imp=document.getElementById("tbpt").innerHTML;
+  function spinnerEnd(){
+    document.getElementById("spinner1").setAttribute("class","");
+    document.getElementById("spinner2").setAttribute("class","");
+    document.getElementById("spinner2").innerHTML = "";}
+  function send(){
+    var object1=[];
+    object1[0]=document.getElementById("rollNumber").value;
+    object1[1]=document.getElementById("dob").value;
+    if(object1[0].length >0 && object1[1].length >0){
+    google.script.run.withSuccessHandler(output).clicked(object1);
+    document.getElementById("spinner1").setAttribute("class","");
+    document.getElementById("spinner2").setAttribute("class","");
+    document.getElementById("spinner2").innerHTML = "";
+    document.getElementById("alert").setAttribute("class","");
+    document.getElementById("alert").innerHTML = "";
+    document.getElementById("tbpt").innerHTML= imp;
+    document.getElementById("spinner1").setAttribute("class","spinner-border text-primary");
+    document.getElementById("spinner2").setAttribute("class","visually-hidden");
+    document.getElementById("spinner2").innerHTML = "Loading...";}
+    else{
+    document.getElementById("tbpt").innerHTML= imp;
+    document.getElementById("alert").setAttribute("class","alert alert-warning");
+    document.getElementById("alert").innerHTML = "Roll Number & Date of Birth are required";} } 
+  function output(a){
+  var obj=JSON.parse(a);;
+    if(a.length > 0){
+    document.getElementById("tbpt").innerHTML= imp;
+    var info=["Name","Roll Number","Class","Registration Number"];
+    var data1=[obj[2],obj[0],obj[3],obj[4]];
+    var subject=["Subject","Max. Marks","Theory","Practical","Total"];
+    var data2=[];var j=0;
+    for(var i=0;i<12;i++){
+      if(obj[5+j] ==""){ break;}
+      else{
+      data2 [i]= [obj[5+j],obj[6+j],obj[7+j],obj[8+j],obj[9+j]];
+      j=j+5;}}
+    var mmLine=["<b>Maximum Marks</b>",obj[65],"<b>Obtained Marks</b>",obj[66]];
+    var resultLine=["<b>Result</b>",obj[68],"<b>Division</b>",obj[69]]; 
+    document.getElementById("rollNumber").value="";
+    document.getElementById("dob").value="";
+    spinnerEnd();
+    document.getElementById("tbpt").setAttribute("class","container");
+    document.getElementById("tb1").setAttribute("class","btn btn-outline-primary");
+    document.getElementById("tb1").innerHTML="Print";
+    var img=document.createElement("img");
+    img.src="https://jigsawcreativeservices.co.uk/wp-content/uploads/2017/12/google-banner.jpg";
+    img.style="width:100%; height:100%;";
+    document.getElementById("tbp1").appendChild(img);
+    document.getElementById("tb3").setAttribute("class","table table-bordered");
+    document.getElementById("rheading").innerHTML="Marksheet";
+    var nrh1 =document.getElementById("nrh1");
+    for(var i=0;i< info.length;i++){
+      var col=document.createElement("th");
+      col.textContent=info[i];
+      col.scope="row";
+      nrh1.appendChild(col);}
+    var tb =document.getElementById("nrr");
+    for (var i=0;i< data1.length;i++){
+      var col=document.createElement("td");
+      col.textContent=data1[i];
+      tb.appendChild(col);}
+    var nrh2 =document.getElementById("nrh2");
+    for(var i=0;i< subject.length;i++){
+      var col=document.createElement("th");
+      col.textContent=subject[i];
+      col.scope="row";
+      nrh2.appendChild(col);}
+    var tbv1 =document.getElementById("nrr1");
+    for(var j=0;j< data2.length;j++){
+      var row=document.createElement("tr");
+      for (var i=0;i< data2[j].length;i++){ 
+        var col=document.createElement("td");
+        col.textContent=data2[j][i];
+        row.appendChild(col);}
+      tbv1.appendChild(row);}
+    var tbv2 =document.getElementById("nrr2");
+    for(var i=0;i<mmLine.length;i++){
+    var col=document.createElement("td");
+    col.innerHTML=mmLine[i];
+    col.scope="row";
+    tbv2.appendChild(col);}
+    var tbv3 =document.getElementById("nrr3");
+    tbv3.setAttribute("class","table-active");
+    for(var i=0;i<resultLine.length;i++){
+    var col=document.createElement("td");
+    col.innerHTML=resultLine[i];
+    col.scope="row";
+    tbv3.appendChild(col);}}
+    else{
+      document.getElementById("tbpt").innerHTML= imp;
+      document.getElementById("rollNumber").value="";
+      document.getElementById("dob").value="";
+      spinnerEnd();
+      document.getElementById("alert").setAttribute("class","alert alert-danger");
+      document.getElementById("alert").innerHTML = "You have entered wrong Roll Number or Password"; }}
+    function printDiv(){
+			var printContents = document.getElementById("tbpt").innerHTML;
+			var originalContents = document.body.innerHTML;
+			document.body.innerHTML = printContents;
+			window.print();
+			document.body.innerHTML = originalContents;}
+</script>
   </body>
 </html>
