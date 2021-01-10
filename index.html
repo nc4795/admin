@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include("css"); ?>
+  </head>
+  <body>
+    <!--navigation start-->
+    <div class="header">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="" width="90" height="30" class="d-inline-block align-top">Result</a>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <a class="btn btn-outline-primary" type="submit">Search</a>
+        </form>
+      </div>
+    </nav>
+    </div>
+    <!--navigation end-->
+    <!--form start-->
+  <div class="query">  
+  <div class="container" style="height: 100%;width: 25%"><br>
+    <h2 align="center">Result</h2>
+      <form>
+          <div class="mb-3">
+            <label for="rollNumber" class="form-label">Roll Number*</label>
+            <input type="text" class="form-control" id="rollNumber" aria-describedby="rollNumber">
+          </div>
+          <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth*</label>
+            <input type="date" class="form-control" id="dob" aria-describedby="dob">
+          </div>
+          <a class="btn btn-primary" id="submit" onclick="send();">Search</a>
+          <div class="container" align="center">
+            <div id="spinner1" class="" style="width: 3rem; height: 3rem;" role="status">
+              <span id="spinner2" class=""></span>
+            </div> 
+            <div id="alert" class="" role="alert">
+            </div>
+          </div> 
+      </form>
+  </div>  
+  <div id="tbpt" class="" style="width: 50%">
+  <p><a id="tb1" class="" onclick="printDiv();"></a></p>
+  <p id="tbp1"></p>
+  <table id="tb3" class="">
+  <thead>
+    <tr id="nrh">
+      <th colspan="4" scope="col"><h5 id="rheading" align="center"></h5></th>
+    </tr>
+    <tr id="nrh1" colspan="4">
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="nrr" class="table-active">
+    </tr>
+    <tr>
+      <td colspan="5">
+      <table class="table mb-0 table-bordered">
+        <thead>
+          <tr id="nrh2">
+          </tr>
+        </thead>
+        <tbody id="nrr1">
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr id="nrr2">
+    </tr>
+    <tr id="nrr3" class="">
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+    <!--form end-->
+    <!--footer start-->
+    <div class="footer">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-text">
+          © Copyright 2020
+        </span>
+      </div>
+    </nav>
+    </div>
+    <!--footer end-->
+    <?!= include("js"); ?>
+  </body>
+</html>
